@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
+const POSTER_PATH = 'https://image.tmdb.org/t/p/w154';
+const BACKDROP_PATH = 'https://image.tmdb.org/t/p/w1280';
+
+
 class MoviesList extends Component {
+    
 
     state = {
         movie: []
@@ -21,11 +26,16 @@ class MoviesList extends Component {
     }
 
     render() {
+        const {movie} = this.state; 
+        
         return (
             <div>
-               <h2>{this.state.movie.title}</h2> 
-               <h4>{this.state.movie.release_date}</h4>
-               <p>{this.state.movie.overview}</p>
+                <img src={`${BACKDROP_PATH}${movie.backdrop_path}`} alt={movie.title} />
+                <img src={`${POSTER_PATH}${movie.poster_path}`} alt={movie.title} />
+                
+               <h2>{movie.title}</h2> 
+               <h4>{movie.release_date}</h4>
+               <p>{movie.overview}</p>
             </div>
 
         );
