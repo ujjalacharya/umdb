@@ -3,9 +3,15 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  
+  state={
+    input: ''
+  }
 
-  handleSubmit = ()=>{
-    console.log(this.text.value);
+  handleChange = (event)=>{
+    this.setState({
+      input: event.target.value
+    })
   }
 
   render() {
@@ -16,8 +22,8 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">Submit the form</p>
-        <input type="text" ref={(input)=>this.text = input}/>
-        <button onClick={this.handleSubmit}>Submit</button>
+        <input onChange={this.handleChange} type="text" value={this.state.input}/>
+        <h3>Hello Mr.{this.state.input} </h3>
       </div>
     );
   }
