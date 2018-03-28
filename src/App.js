@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import Movie from './Movie';
 import './App.css';
 
 const movies = [
@@ -26,11 +27,8 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
-        {movies.map(movie => (
-          <div key={movie.id}>
-            {movie.title}
-          </div>
-        ))}
+        {movies.map(movie => <Movie key={movie.id} movie={movie}/>
+        )}
       </div>
     );
   }
