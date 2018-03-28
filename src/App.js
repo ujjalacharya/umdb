@@ -3,24 +3,26 @@ import logo from './logo.svg';
 import Movie from './Movie';
 import './App.css';
 
-const movies = [
-  {
-    id: 1,
-    title: 'Star Wars',
-    desc: 'A movie on the wars on space'
-  },
-  {
-    id: 2,
-    title: 'Star Trek'
-  },
-  {
-    id: 3,
-    title: 'Guardians of Galaxy'
-  }
-];
 
 class App extends Component {
 
+  state={
+    movies: []
+  }
+
+  async componentDidMount(){
+
+    try{
+      const res = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=d4f67f412d4bb016866b72002ccb2158&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1');
+
+      const movies = await res.json();
+      this.setState({
+        movies: movies.results
+      })
+        } catch(e){
+          console.log(e);
+    }
+  }
 
   render() {
     return (
@@ -28,7 +30,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
-        {movies.map(movie => <Movie key={movie.id} movie={movie} desc={movie.desc}/>
+        {this.state.movies.map(movie => <Movie key={movie.id} movie={movie}/>
         )}
       </div>
     );
